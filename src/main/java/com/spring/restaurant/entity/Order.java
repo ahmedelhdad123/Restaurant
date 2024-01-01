@@ -1,5 +1,6 @@
 package com.spring.restaurant.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,6 +45,7 @@ public class Order {
     @UpdateTimestamp
     private Date dateUpdate;
 
+    @JsonIgnore  //to avoid the list of older name of problem circle
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;

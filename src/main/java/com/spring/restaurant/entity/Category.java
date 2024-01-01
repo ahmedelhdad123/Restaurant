@@ -1,6 +1,7 @@
 package com.spring.restaurant.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Category {
     @UpdateTimestamp
     private Date dateUpdate;
 
+    @JsonIgnore    //to avoid the list of older name of problem circle
     @OneToMany(mappedBy = "category")
     private Set<Order> orders;
 }
