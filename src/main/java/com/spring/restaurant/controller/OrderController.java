@@ -23,20 +23,38 @@ public class OrderController {
         return orderService.getAllOrder(page, size);
     }
 
-    @GetMapping("category")  // localhost:8085/api/category?id=
-    public List<Order> findByCategory_Id(@RequestParam int id)
+    @GetMapping("category")  // localhost:8085/api/category?page= &size= &id=
+    public List<Order> findByCategory_Id(@RequestParam int page,@RequestParam int size,@RequestParam int id)
     {
-        return orderService.findByCategory_Id(id);
+        return orderService.findByCategory_Id(page, size,id);
     }
 
-    @GetMapping("orderName")  // localhost:8085/api/orderName?name=
-    public List<Order> findByOrderName(@RequestParam String name)
+    @GetMapping("orderName")  // localhost:8085/api/orderName?page= &size= & name=
+    public List<Order> findByOrderName(@RequestParam int page,@RequestParam int size,@RequestParam String name)
     {
-        return orderService.findByOrderName(name);
+        return orderService.findByOrderName(page, size,name);
     }
 
     @GetMapping("getOrder/{id}")  // localhost:8085/api/orderName/{value}
     public Order findOrderById(@PathVariable int id){
         return orderService.findOrderById(id);
     }
+
+    @GetMapping("orderSize")   // localhost:8085/api/orderSize
+    public Long getSizeOfAllOrder()
+    {
+        return orderService.getSizeOfAllOrder();
     }
+
+    @GetMapping("categoryOrderSize") // localhost:8085/api/categoryOrderSize?id=
+   public long getOrderSizeByCategoryId(int id)
+   {
+       return orderService.getOrderSizeByCategoryId(id);
+   }
+
+   @GetMapping("OrderSizeByName") // localhost:8085/api/OrderSizeByName?name=
+   public long getOrderSizeByName(String name)
+   {
+       return orderService.getOrderSizeByName(name);
+   }
+}
