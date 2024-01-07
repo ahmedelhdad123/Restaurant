@@ -1,6 +1,7 @@
 package com.spring.restaurant.controller;
 
 import com.spring.restaurant.entity.Order;
+import com.spring.restaurant.exception.ApiRequestException;
 import com.spring.restaurant.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,9 @@ public class OrderController {
     @GetMapping("category")  // localhost:8085/api/category?page= &size= &id=
     public List<Order> findByCategory_Id(@RequestParam int page,@RequestParam int size,@RequestParam int id)
     {
-        return orderService.findByCategory_Id(page, size,id);
+       List<Order> orders=orderService.findByCategory_Id(page, size,id);
+
+       return orders;
     }
 
     @GetMapping("orderName")  // localhost:8085/api/orderName?page= &size= & name=
@@ -57,4 +60,16 @@ public class OrderController {
    {
        return orderService.getOrderSizeByName(name);
    }
+
+   @GetMapping("allOrderPrice")  // localhost:8085/api/allOrderPrice
+    public long getAllOrderPrice()
+    {
+        return orderService.getAllOrderPrice();
+    }
+
+    @GetMapping("orderPriceById")   // localhost:8085/api/OrderPriceById?id=
+    public long getOrderPriceById(int id)
+    {
+        return orderService.getOrderPriceById(id);
+    }
 }
