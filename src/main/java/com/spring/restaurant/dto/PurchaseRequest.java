@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,7 +17,7 @@ import java.util.List;
 public class PurchaseRequest { // to save All (Request,Client,Address,Items)
     private Client client;
     private Request request;
-    private List<Items> items;
+    private List<Items> items=new ArrayList<>();
     private Address address;
 
 }

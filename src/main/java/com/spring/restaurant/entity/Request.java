@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,14 +48,21 @@ public class Request {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "request")
-    private List<Items> items;
+    private List<Items> items=new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
-    private Address address;
+    private Address address=new Address();
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Client client;
+    private Client client=new Client();
+
+    public void addItem(Items item)
+    {
+        items.add(item);
+        item.setRequest(this);
+    }
+
 }

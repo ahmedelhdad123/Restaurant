@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,7 +33,12 @@ public class Client {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private List<Request> requests;
+    private List<Request> requests=new ArrayList<>();
 
 
+    public void addRequest(Request request)
+    {
+        requests.add(request);
+        request.setClient(this);
+    }
 }
