@@ -2,6 +2,7 @@ package com.spring.restaurant.config;
 
 import com.spring.restaurant.entity.Category;
 import com.spring.restaurant.entity.Order;
+import com.spring.restaurant.entity.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -16,6 +17,7 @@ public class ConfigureRepositoryRestConfigration implements RepositoryRestConfig
         HttpMethod[] unSupport={HttpMethod.GET,HttpMethod.DELETE,HttpMethod.POST,HttpMethod.PUT};
         disableHttpMethod(Category.class,config,unSupport);
         disableHttpMethod(Order.class,config,unSupport);
+        disableHttpMethod(User.class,config,unSupport);
     }
     public void disableHttpMethod(Class theClass, RepositoryRestConfiguration config, HttpMethod[] methods)
     {
